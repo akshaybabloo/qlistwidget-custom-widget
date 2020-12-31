@@ -39,7 +39,7 @@ MainWindow::~MainWindow()
  */
 void MainWindow::removeItem(const QString &text) {
     qDebug() << text;
-    auto item = ui->listWidget->findItems(text, Qt::MatchExactly).last(); // I cannot use this unless I set #L20
+    auto item = ui->listWidget->findItems(text, Qt::MatchExactly).last(); // I cannot use this unless I set #L23
     delete ui->listWidget->takeItem(ui->listWidget->row(item));
 }
 
