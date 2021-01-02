@@ -7,17 +7,13 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    QFont font;
-    font.setPixelSize(1); // this can't be zero
 
     // Creates a list of custom widgets
     for (int i = 0; i < 5; ++i) {
         auto item = new QListWidgetItem();
 
         auto widget = new CustomWidget(this);
-        auto text = QString("text %1").arg(i);
-        widget->setText(text);
-        widget->setObjectName(QString("object %1").arg(i));
+        widget->setText(QString("text %1").arg(i));
 
         item->setSizeHint(widget->sizeHint());
 
