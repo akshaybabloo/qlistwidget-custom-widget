@@ -16,6 +16,7 @@ public:
     ~CustomWidget();
 
     void setText(const QString &text);
+    QString getText();
 
 signals:
     void sendRemoveItem(const QString &text);

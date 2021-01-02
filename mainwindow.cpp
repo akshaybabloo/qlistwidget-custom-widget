@@ -20,8 +20,6 @@ MainWindow::MainWindow(QWidget *parent)
         widget->setObjectName(QString("object %1").arg(i));
 
         item->setSizeHint(widget->sizeHint());
-        item->setText(text); // this super-imposes on the custom widget
-        item->setFont(font); // to make the text very small
 
         ui->listWidget->addItem(item);
         ui->listWidget->setItemWidget(item, widget);
@@ -38,8 +36,14 @@ MainWindow::~MainWindow()
  * Removes the item from the list
  */
 void MainWindow::removeItem(const QString &text) {
-    qDebug() << text;
-    auto item = ui->listWidget->findItems(text, Qt::MatchExactly).last(); // I cannot use this unless I set #L23
-    delete ui->listWidget->takeItem(ui->listWidget->row(item));
+
+    for (int i = 0; i < ui->listWidget->count(); ++i) {
+        auto item = ui->listWidget->item(i);
+        auto itemWidget = dynamic_cast<CustomWidget*>(ui->listWidget->itemWidget(item));
+        if (itemWidget->getText() == text){
+            delete item;
+            break;
+        }
+    }
 }
 

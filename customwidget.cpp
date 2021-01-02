@@ -24,3 +24,7 @@ void CustomWidget::on_toolButton_clicked()
 //    emit sendRemoveItem(objectName()); // I want to send the object name
     emit sendRemoveItem(ui->label->text()); // But I have to send the label text so that it matches with item text
 }
+
+QString CustomWidget::getText() {
+    return ui->label->text();
+}
