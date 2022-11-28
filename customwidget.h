@@ -7,25 +7,24 @@ namespace Ui {
 class CustomWidget;
 }
 
-class CustomWidget : public QWidget
-{
+class CustomWidget : public QWidget {
     Q_OBJECT
 
 public:
-    explicit CustomWidget(QWidget *parent = nullptr);
+    explicit CustomWidget(QWidget* parent = nullptr);
     ~CustomWidget();
 
-    void setText(const QString &text);
+    void setText(const QString& text);
     QString getText();
 
 signals:
-    void sendRemoveItem(const QString &text);
+    void sendRemoveItem(const QString& text);
 
 private slots:
-    void on_toolButton_clicked();
+    void closeButtonClicked();
 
 private:
-    Ui::CustomWidget *ui;
+    std::unique_ptr<Ui::CustomWidget> ui;
 };
 
 #endif // CUSTOMWIDGET_H

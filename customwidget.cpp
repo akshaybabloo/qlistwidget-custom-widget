@@ -1,29 +1,36 @@
 #include "customwidget.h"
+
+#include <QPushButton>
+
+#include "mainwindow.h"
 #include "ui_customwidget.h"
 
-CustomWidget::CustomWidget(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::CustomWidget)
+CustomWidget::CustomWidget(QWidget* parent)
+    : QWidget(parent)
+    , ui(new Ui::CustomWidget)
 {
     ui->setupUi(this);
 
-    connect(this, SIGNAL(sendRemoveItem(const QString &)), parent, SLOT(removeItem(const QString &)));
+    // Send the label text to MainWindow's removeItem method
+    connect(this, &CustomWidget::sendRemoveItem, qobject_cast<MainWindow*>(parent), &MainWindow::removeItem);
+
+    // Connect close button clicked to closeButtonClicked method
+    connect(ui->closeButton, &QPushButton::clicked, this, &CustomWidget::closeButtonClicked);
 }
 
-CustomWidget::~CustomWidget()
+CustomWidget::~CustomWidget() { }
+
+void CustomWidget::setText(const QString& text)
 {
-    delete ui;
-}
-
-void CustomWidget::setText(const QString &text) {
     ui->label->setText(text);
 }
 
-void CustomWidget::on_toolButton_clicked()
+QString CustomWidget::getText()
 {
-    emit sendRemoveItem(ui->label->text());
+    return ui->label->text();
 }
 
-QString CustomWidget::getText() {
-    return ui->label->text();
+void CustomWidget::closeButtonClicked()
+{
+    emit sendRemoveItem(ui->label->text());
 }
