@@ -1,9 +1,10 @@
 #include "customwidget.h"
+#include "mainwindow.h"
 #include "ui_customwidget.h"
 
-CustomWidget::CustomWidget(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::CustomWidget)
+CustomWidget::CustomWidget(QWidget* parent)
+    : QWidget(parent)
+    , ui(new Ui::CustomWidget)
 {
     ui->setupUi(this);
 
@@ -15,7 +16,8 @@ CustomWidget::~CustomWidget()
     delete ui;
 }
 
-void CustomWidget::setText(const QString &text) {
+void CustomWidget::setText(const QString& text)
+{
     ui->label->setText(text);
 }
 
@@ -24,6 +26,7 @@ void CustomWidget::on_toolButton_clicked()
     emit sendRemoveItem(ui->label->text());
 }
 
-QString CustomWidget::getText() {
+QString CustomWidget::getText()
+{
     return ui->label->text();
 }

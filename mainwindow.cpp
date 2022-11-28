@@ -2,7 +2,7 @@
 #include "./ui_mainwindow.h"
 #include "customwidget.h"
 
-MainWindow::MainWindow(QWidget *parent)
+MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
@@ -20,7 +20,6 @@ MainWindow::MainWindow(QWidget *parent)
         ui->listWidget->addItem(item);
         ui->listWidget->setItemWidget(item, widget);
     }
-
 }
 
 MainWindow::~MainWindow() { }
@@ -28,15 +27,14 @@ MainWindow::~MainWindow() { }
 /*
  * Removes the item from the list
  */
-void MainWindow::removeItem(const QString &text) {
-
+void MainWindow::removeItem(const QString& text)
+{
     for (int i = 0; i < ui->listWidget->count(); ++i) {
         auto item = ui->listWidget->item(i);
         auto itemWidget = qobject_cast<CustomWidget*>(ui->listWidget->itemWidget(item));
-        if (itemWidget->getText() == text){
+        if (itemWidget->getText() == text) {
             delete ui->listWidget->takeItem(i);
             break;
         }
     }
 }
-
