@@ -23,10 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 }
 
-MainWindow::~MainWindow()
-{
-    delete ui;
-}
+MainWindow::~MainWindow() { }
 
 /*
  * Removes the item from the list
@@ -35,9 +32,9 @@ void MainWindow::removeItem(const QString &text) {
 
     for (int i = 0; i < ui->listWidget->count(); ++i) {
         auto item = ui->listWidget->item(i);
-        auto itemWidget = dynamic_cast<CustomWidget*>(ui->listWidget->itemWidget(item));
+        auto itemWidget = qobject_cast<CustomWidget*>(ui->listWidget->itemWidget(item));
         if (itemWidget->getText() == text){
-            delete item;
+            delete ui->listWidget->takeItem(i);
             break;
         }
     }

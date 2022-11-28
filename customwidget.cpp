@@ -7,7 +7,7 @@ CustomWidget::CustomWidget(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    connect(this, SIGNAL(sendRemoveItem(const QString &)), parent, SLOT(removeItem(const QString &)));
+    connect(this, &CustomWidget::sendRemoveItem, qobject_cast<MainWindow*>(parent), &MainWindow::removeItem);
 }
 
 CustomWidget::~CustomWidget()
