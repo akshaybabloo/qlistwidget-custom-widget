@@ -20,7 +20,6 @@ public slots:
     void removeItem(const QString& text);
 
 private:
-    //    Ui::MainWindow *ui;
     std::unique_ptr<Ui::MainWindow> ui;
 };
 #endif // MAINWINDOW_H
